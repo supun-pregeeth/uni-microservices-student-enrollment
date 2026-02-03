@@ -11,4 +11,11 @@ public class AuthResponse {
     private String email;
     private String role;
 
+    public AuthResponse(String text){
+        this.text = text;
+    }
+
 }
+
+
+
