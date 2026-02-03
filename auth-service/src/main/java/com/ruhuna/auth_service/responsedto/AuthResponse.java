@@ -7,6 +7,7 @@ import lombok.*;
 
 public class AuthResponse {
 
+    private  String text;
     private Long id;
     private String email;
     private String role;

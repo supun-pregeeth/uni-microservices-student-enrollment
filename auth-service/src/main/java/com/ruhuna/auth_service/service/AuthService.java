@@ -8,6 +8,7 @@ import com.ruhuna.auth_service.registerdto.*;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -35,6 +36,23 @@ public class AuthService {
         return new AuthResponse("Sign up is success - " + usersaved.getEmail());
 
         //return new AuthResponse(usersaved.getId(),usersaved.getEmail(),usersaved.getRole());
+    }
+
+    public AuthResponse login(LoginRequest dto){
+
+        Optional<AppUser> optionaluser = userRepository.findByEmail(dto.getEmail());
+
+        if(optionaluser.isEmpty()){
+            return new AuthResponse("Invalid email or password");
+        }
+
+        AppUser user = optionaluser.get();
+
+        if(!encoder.matches(dto.getPassword(),user.getPassword())){
+            return new AuthResponse("Invalid email or password");
+        }
+
+        return new AuthResponse("Login Successful");
 
 
     }
