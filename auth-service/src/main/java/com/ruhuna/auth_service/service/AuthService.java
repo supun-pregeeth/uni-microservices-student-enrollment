@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AuthService {
 
     private final UserRepository userRepository;  //THIS IS DEPENDENCY INJECTION
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    //private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -28,7 +28,8 @@ public class AuthService {
 
         AppUser user = new AppUser();
         user.setEmail(dto.getEmail());
-        user.setPassword(encoder.encode(dto.getPassword()));
+        //user.setPassword(encoder.encode(dto.getPassword()));
+        user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());
 
         AppUser usersaved = userRepository.save(user);
@@ -48,9 +49,14 @@ public class AuthService {
 
         AppUser user = optionaluser.get();
 
-        if(!encoder.matches(dto.getPassword(),user.getPassword())){
+        /*if(!encoder.matches(dto.getPassword(),user.getPassword())){
+            return new AuthResponse("Invalid email or password");
+        }*/
+
+        if (!dto.getPassword().equals(user.getPassword())) {
             return new AuthResponse("Invalid email or password");
         }
+
 
         return new AuthResponse("Login Successful");
 
