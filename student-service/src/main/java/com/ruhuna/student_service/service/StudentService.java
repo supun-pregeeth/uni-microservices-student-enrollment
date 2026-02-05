@@ -16,11 +16,11 @@ public class StudentService {
     }
 
     public StudentResponse create(Long userid, StudentCreateRequest dto){
-        if(repository.existsByUserID(userid)){
+        if(repository.existsByUserid(userid)){
             return new StudentResponse("Profile already exists");
         }
 
-        if(repository.existsByRegNo(dto.getRegno())){
+        if(repository.existsByRegno(dto.getRegno())){
             return new StudentResponse("RegNo already exists");
         }
 

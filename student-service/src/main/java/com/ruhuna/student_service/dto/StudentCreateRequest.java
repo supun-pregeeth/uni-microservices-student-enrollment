@@ -10,11 +10,11 @@ import lombok.Setter;
 
 public class StudentCreateRequest {
 
+    @NotBlank(/*message = ""*/)
+    private String fullname;
+
     @NotBlank
     private String regno;
-
-    @NotBlank(message = "")
-    private String fullname;
 
     private String department;
 

@@ -24,11 +24,12 @@ public class StudentController {
     }
 
     @PostMapping
-    public StudentResponse createstudent(@Valid @RequestBody StudentCreateRequest dto){
+    public StudentResponse createstudent(
+            @Valid @RequestBody StudentCreateRequest dto,
+            @RequestHeader("X-USER-ID") Long userid
+    ){
 
-
-
-        return service.create(userid,dto);
+        return service.create( userid,dto);
     }
 
     /*// Get by id
