@@ -3,9 +3,14 @@ package com.ruhuna.student_service.controller;
 import com.ruhuna.student_service.service.StudentService;
 import com.ruhuna.student_service.dto.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/students")
@@ -18,6 +23,26 @@ public class StudentController {
         this.service=service;
     }
 
-   /* @GetMapping*/
+    @PostMapping
+    public StudentResponse createstudent(@Valid @RequestBody StudentCreateRequest dto){
 
+
+
+        return service.create(userid,dto);
+    }
+
+    /*// Get by id
+    @GetMapping("/{id}")
+    public Student get(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    // Get my profile
+    @GetMapping("/me")
+    public Student me(HttpServletRequest req) {
+
+        Long userId = Long.parseLong(req.getHeader("X-USER-ID"));
+
+        return service.getByUserId(userId);
+    }*/
 }

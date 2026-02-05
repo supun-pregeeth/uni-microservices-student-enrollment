@@ -39,4 +39,18 @@ public class StudentService {
         return new StudentResponse("Create profile successful");
     }
 
+   /* // Get by studentId
+    public Student getById(Long id) {
+
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
+
+    // Get by userId
+    public Student getByUserId(Long userId) {
+
+        return repo.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+    }*/
+
 }
